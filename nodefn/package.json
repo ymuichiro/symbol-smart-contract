@@ -1,0 +1,20 @@
+{
+  "name": "hellofn",
+  "version": "1.0.0",
+  "description": "example function",
+  "main": "func.js",
+  "author": "",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "fn start --log-level DEBUG",
+    "test": "fn --verbose deploy --app nodeapp --local"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.21.5",
+    "@babel/parser": "^7.21.8",
+    "@babel/traverse": "^7.21.5",
+    "@fnproject/fdk": ">=0.0.54",
+    "rxjs": "^7.8.1",
+    "symbol-sdk": "^2.0.4"
+  }
+}

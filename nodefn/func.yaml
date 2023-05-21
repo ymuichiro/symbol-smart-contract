@@ -1,0 +1,7 @@
+schema_version: 20180708
+name: nodefn
+version: 0.0.20
+runtime: node
+build_image: node:20
+run_image: node:20
+entrypoint: node func.js
