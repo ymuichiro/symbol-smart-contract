@@ -23,7 +23,6 @@ function getSymbolNetwork(networkType) {
     }
 }
 function handle(input) {
-    var _a;
     if (!input.networkType) {
         throw new Error("networkType is not defined");
     }
@@ -33,8 +32,9 @@ function handle(input) {
     if (typeof input.amount !== "number") {
         throw new Error("amount is required number");
     }
+    const amount = input.amount ? input.amount : 0;
     const config = getSymbolNetwork(input.networkType);
-    const transaction = symbol_sdk_1.TransferTransaction.create(symbol_sdk_1.Deadline.create(config.epochAdjustment), symbol_sdk_1.Address.createFromRawAddress(input.recipientAddress), [new symbol_sdk_1.Mosaic(new symbol_sdk_1.NamespaceId("symbol.xym"), symbol_sdk_1.UInt64.fromUint((_a = input.amount) !== null && _a !== void 0 ? _a : 0 * Math.pow(10, 6)))], input.message ? symbol_sdk_1.PlainMessage.create(input.message) : symbol_sdk_1.EmptyMessage, input.networkType);
+    const transaction = symbol_sdk_1.TransferTransaction.create(symbol_sdk_1.Deadline.create(config.epochAdjustment), symbol_sdk_1.Address.createFromRawAddress(input.recipientAddress), [new symbol_sdk_1.Mosaic(new symbol_sdk_1.NamespaceId("symbol.xym"), symbol_sdk_1.UInt64.fromUint(amount * Math.pow(10, 6)))], input.message ? symbol_sdk_1.PlainMessage.create(input.message) : symbol_sdk_1.EmptyMessage, input.networkType);
     return {
         v: 3,
         type: 3,

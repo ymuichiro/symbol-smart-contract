@@ -56,11 +56,13 @@ function handle(input: Props): Response {
     throw new Error("amount is required number");
   }
 
+  const amount = input.amount ? input.amount : 0;
+
   const config = getSymbolNetwork(input.networkType);
   const transaction = TransferTransaction.create(
     Deadline.create(config.epochAdjustment),
     Address.createFromRawAddress(input.recipientAddress),
-    [new Mosaic(new NamespaceId("symbol.xym"), UInt64.fromUint(input.amount ?? 0 * Math.pow(10, 6)))],
+    [new Mosaic(new NamespaceId("symbol.xym"), UInt64.fromUint(amount * Math.pow(10, 6)))],
     input.message ? PlainMessage.create(input.message) : EmptyMessage,
     input.networkType
   );
