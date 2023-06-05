@@ -40,7 +40,9 @@ function handle(input) {
         type: 3,
         chain_id: config.generationHash,
         network_id: input.networkType,
-        payload: transaction.serialize(),
+        data: {
+            payload: transaction.serialize(),
+        },
     };
 }
 fdk_1.default.handle(handle);

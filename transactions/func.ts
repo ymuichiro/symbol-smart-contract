@@ -22,7 +22,9 @@ interface Response {
   type: number;
   network_id: number;
   chain_id: string;
-  payload: string;
+  data: {
+    payload: string;
+  };
 }
 
 function getSymbolNetwork(networkType: 104 | 152) {
@@ -68,7 +70,9 @@ function handle(input: Props): Response {
     type: 3,
     chain_id: config.generationHash,
     network_id: input.networkType,
-    payload: transaction.serialize(),
+    data: {
+      payload: transaction.serialize(),
+    },
   };
 }
 
