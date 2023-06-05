@@ -14,6 +14,14 @@ if [ $1 = "transactions" ]; then
 	cd ../
 fi
 
+if [ $1 = "transactions-deploy" ]; then
+	echo "> start transactions fn app";
+	cd transactions
+	fn --verbose deploy --app transactions --local
+	fn inspect function transactions transactions
+	cd ../
+fi
+
 if [ $1 = "transactions-test" ]; then
 	echo "> start transactions app test";
 	cd transactions
