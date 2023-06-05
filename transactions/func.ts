@@ -4,7 +4,7 @@ import {
   Deadline,
   EmptyMessage,
   Mosaic,
-  NamespaceId,
+  MosaicId,
   PlainMessage,
   TransferTransaction,
   UInt64,
@@ -32,11 +32,13 @@ function getSymbolNetwork(networkType: 104 | 152) {
     return {
       generationHash: "57F7DA205008026C776CB6AED843393F04CD458E0AA2D9F1D5F31A402072B2D6",
       epochAdjustment: 1615853185,
+      currencyId: "6BED913FA20223F8",
     };
   } else if (networkType === 152) {
     return {
       generationHash: "49D6E1CE276A85B70EAFE52349AACCA389302E7A9754BCF1221E79494FC665A4",
       epochAdjustment: 1667250467,
+      currencyId: "72C0212E67A08BCE",
     };
   } else {
     throw new Error("Incorrect network type specified");
@@ -62,7 +64,7 @@ function handle(input: Props): Response {
   const transaction = TransferTransaction.create(
     Deadline.create(config.epochAdjustment),
     Address.createFromRawAddress(input.recipientAddress),
-    [new Mosaic(new NamespaceId("symbol.xym"), UInt64.fromUint(amount * Math.pow(10, 6)))],
+    [new Mosaic(new MosaicId(config.currencyId), UInt64.fromUint(amount * Math.pow(10, 6)))],
     input.message ? PlainMessage.create(input.message) : EmptyMessage,
     input.networkType
   );
